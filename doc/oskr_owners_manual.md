@@ -239,6 +239,42 @@ want to get the newly created SSH key. Although this isn't strictly
 part of the unlock process this key is needed to access Vector's
 internals and begin your OSKR adventure! So lets grab it now.
 
+To get the QSN:
+
+1. Using the Chrome web browser go to https://vector-setup.ddl.io
+
+2. Follow the instructions to pair with Vector and log in.
+
+3. Click the **Download logs** link located at the top right corner of
+    the page.
+
+4. Open the downloaded archive which should extract the contents of
+    several logs on to your hard drive.
+
+5.  The file `data/diagnostics/ssh/id_rsa` is your security key. It
+    should be installed so it can be used by your system. On Linux and
+    OSX:
+
+    ```bash
+    cp data/diagnostics/ssh/id_rsa_Victor-X1Y1 ~/.ssh
+    chmod 700 ~/.ssh/id_rsa_Victor-X1Y1
+	```
+
+6. Load the key in to your keyring: `ssh-add
+    ~/.ssh/id_rsa_Victor-X1Y1`
+
+7. Obtain the IP of the robot from the diagnostics screen.
+
+    * put Vector in charger.
+    * double click the backpack button.
+	* raise the forklift up and down
+
+    You should now see the diagnostics screen which has the IP.
+
+8. Connect! `ssh root@<ROBOT_IP_FROM_ABOVE>`
+
+9. Type the command `exit` to leave the ssh session.
+
 ## Congratulations! Vector is unlocked!
 
 # Filesystem layout
@@ -326,6 +362,49 @@ which one to use you probably want to start with **nano**.
     http://192.168.1.111:8888/consolevarset?key=Offboard&value=1
     http://192.168.1.111:8888/consolevarset?key=MirrorMode&value=1
 	coretech/vision/tools/offboard_vision_server/offboard_vision_server.py
+
+# Vector subsystems
+
+The Vector software consists of several interacting subsystems. The
+internal codename for the project was *Victor** and we will see that
+reflected in the naming with things like `vic-`.
+
+As the software is open sourced there will be more detailed
+descriptions of each component.
+
+## vic-switchboard
+
+This is the process that handles BLE communications and forwards them
+to the rest of the system.
+
+## vic-cloud
+
+This is the subsystem that interacts with cloud services. Most
+importantly this provides access to the voice recognition
+functionality.
+
+## vic-anim
+
+This controls the animations that can be played on the robot. In this
+case animations are a combination of motors moving and what the
+display shows. If Vector is dancing and smiling all the work is
+happening here.
+
+## vic-gateway
+
+The internet gateway which authenticates and routes SDK messages to
+the vector.
+
+## vic-engine
+
+This is the most elaborate and powerful module by far. The engine
+provides the high level functions for Vectors behavior, a complete AI
+engine that controls his mood, and much much more.
+
+## vic-dasmgr
+
+This controls fleet logging via an ANKI developed system called DAS so
+we can keep an eye on the health of all the robots out there in the wild.
 
 # Security
 
@@ -559,4 +638,5 @@ robot.
 
 
 # Appendices
+
 
