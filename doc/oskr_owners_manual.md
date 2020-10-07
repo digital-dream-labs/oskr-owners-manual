@@ -6,15 +6,15 @@ The first step in your new adventure is unlocking your robot and
 transforming it from a normal Vector to and OSKR enabled Vector where
 you will be able to directly access all internals.
 
-## What is Unlocking?
+## What is Unlocking? Why do we do it?
 
-By default the operating system of Vector is secure and
-unchangeable. The security starts with encryption keys baked in to the
-hardware itself and works its way down to the final operating system
-image. In each phase of the boot process the previous system verifies
-the next system loads. If even one bit, byte, letter, etc change in
-any of the phases then the system will stop loading and come to a
-halt. This is done for:
+By default the operating system of Vector is secure and unchangeable
+with digital signatures to ensure system integrity. The security starts
+with encryption keys baked in to the hardware itself and works its way
+down to the final operating system image. In each phase of the boot
+process the previous system verifies the next system loads. If even
+one bit, byte, letter, etc change in any of the phases then the system
+will stop loading and come to a halt. This is done for:
 
 * **Security** We want to make sure a malicious user hasn't modified
     the code to do something that it shouldn't be doing, like sending spam
@@ -28,18 +28,94 @@ halt. This is done for:
     problems can add up quickly. Ensuring the Operating System hasn't
     been changed ensures reliability.
 
-The downside of this configuration is that Vector can't be hacked or
-modified. *Unlocking* maintains the top levels of security but allows
-us to use a modifiable main system so that we can make changes.
+At boot time the following verification happens.
 
-The unlock image is build individually for each unique robot so that a
-robot can only be unlocked intentionally by its owner, keeping Vectors
-that aren't OSKR units safe and reliable.
+1. The hardware chip itself verifies the cryptographic signature on
+    the low level ABOOT partition. It is for all practical purposes
+    impossible to override this check.
 
-The unlock image modifies low-level parts of Vector's filesystem that
-were expected to never be modified after leaving the factory. Care
-must be taken to do everything correctly or you can 'brick' the unit
-making it inoperable.
+2. The ABOOT partition has another security key baked in that it uses
+    to verify the BOOT partition and load it. The BOOT partition is a
+    skeleton linux operating system to bootstrap the main system.
+
+3. The BOOT partition loads the appropriate SYSTEM partition which is
+    the final software to run.
+
+    In the case of a normal Vector the
+    SYSTEM partition is protected by an Android-specific system called
+	`dm-verity` to ensure that this partition isn't modified.
+
+    Development Vectors used internally by the company, and now OSKR
+    Vectors do not enforce `dm-verity` security on the system
+    partition allowing development of new features.
+
+In addition to these layers of cryptographic security a new Vector
+comes with a **recovery filesystem** installed for reliability
+purposes. This has been loaded on at the factory and is the boot
+system of last resort when no other software will load.
+
+We then set aside two slots for day-to-day software usage called **A**
+and **B**. When you install an OTA update the system:
+
+1. Downloads the update.
+
+2. Performs some basic verification to see if the image 'fits' with
+    the current configuration.
+
+3. Decides if the A or B slot is the available one.
+
+4. Copies the new filesystems on to the slot.
+
+5. Flags the new slot as the 'good' one.
+
+6. Reboots and loads the software. If the software fails to load it
+    marks the slot as invalid.
+
+    If there is a previously valid slot, such as **A** after an update
+    to **B** was installed, it reverts to that.
+
+    If there is now good **A** or **B** slot it reverts back to the
+    **recovery filesystem** so you can try to install again. This is
+    important. No matter how bad the running system gets messed up we
+    should **always** be able to fall back to the **recovery filesystem**
+	
+So what does all this mean? We've got two conflicting goals:
+
+1. Normal Vectors should have all the security and reliability that
+    are expected for a consumer electronic device and need to remain
+    locked down.
+
+2. OSKR Vectors should have some ability to lock down the software
+    installed but some ability to modify software for development.
+
+Because of this each type of robot need to enforce different
+requirements each needs a different set of cryptographic signatures so
+that a normal Vector behaves the way it should and a OSKR unit behaves
+the way it should.
+
+To accomplish this and unlock a OSKR robot we need to:
+
+1. Reprogram the ABOOT image with a new cryptographic signature.
+
+2. Sign the new BOOT images with this signature.
+
+3. Create new **recovery filesystems** signed by the new keys because
+    the old ones will be considered 'bad' when we swap out the signatures.
+
+This is where things get tricky. The normal assumption is that the
+ABOOT and recovery filesystems get installed directly at the factory
+and physically written directly to the chips before final assembly of
+the robot, and never touched again.
+
+But to do this outside of the factory we need to do this with our OTA
+(Over The Air) update scripts. And we need to modify software
+partitions that were never expected to be written in an environment
+much less reliable than a factory with physical connections to the
+hardware. So we must be very careful to make sure that we generate
+correct images, and the installation process completes without
+interruption.
+
+But enough of the theory let's dive in to the process...
 
 ## Step 1: Getting your QSN
 
@@ -81,22 +157,73 @@ If you have trouble extracting the archive you can send the entire
 
 ## Step 2: Doing a Test Upgrade
 
-Since the application of the unlock image is sensitive and if done
-wrong it can kill Vector, it is highly recommended that you go through
-a test run of the upgrade process by installing a normal ota file using
-the same process you will use to install the unlock image.
+Remember that modifying the ABOOT and recovery filesystems are
+dangerous operations. If the process is interrupted somehow it will
+make it impossible to boot Vector. Some potential points of failure in
+a normal OTA upgrade are:
 
-A normal ota is safe. If something goes wrong Vector wlll just revert
-to factory mode. The unlock image must update the factory mode itself
-so if that goes wrong there is nothing to fall back to.
+* Vector loses power in the middle of the upgrade.
 
-The test upgrade should be done to ensure the unlock upgrade goes as
-expected. If the process is confusing please repeat the test upgrade
-again until you feel you have a good understanding of what's going on.
+* Your wifi modem breaks or is unplugged in the process.
+
+* Your service providers connection dies in the middle of the OTA file download.
+
+* Some random part of the internet has issues preventing the OTA from
+  downloading completely.
+
+This doesn't matter for normal OTA installs because we can just try
+again. But when unlocking an interruption like this can be
+disastrous. To avoid the recommended procedure is to turn your Vector
+in to an AP and connect directly with your computer. Now there are
+only two devices that have potential for failure instead of
+dozens.
+
+The process to do this is somewhat cumbersome so it's best to do one
+or more test runs until you're comfortable with the process and know
+what to expect. we will do a normal OTA update with the same files
+that are normally used to update your Vector. These do not interact
+with the dangerous parts and if there are problems you can try again.
+
+### Prepping the robot
+
+The robot should be wiped before beginning.
+
+### Hosting the OTA locally
+
+We need to host the OTA locally on the computer we're using to update
+since there will be no access to anything else at that point in time.
+
+### Connecting to the advanced console interface in vector web setup
+
+We need advanced access.
+
+### Enabling AP mode and connecting
+
+Do it.
+
+### Starting the deploy
+
+ota-start ...
 
 ## Step 3: Installing the unlock image
 
-Now with file.
+Now we follow the same procedure with the custom generated image for
+your Vector. If you skipped ahead to here *please* go through the test
+run with a safe file. Assuming you know what you're doing:
+
+1. Start from an updated vector with updated software. The 0.9.0
+    recovery software does not support updating the appropriate
+    partitions and it will fail to try to install the unlock image.
+
+    Don't worry, it does this safely and you will not damage your
+    Vector if you forget to do so.
+
+2.  Use a link to the new image instead of the normal OTA file.
+
+After installation is complete Vector should reboot and you should now
+see an introductory screen that says OSKR. This means that your
+Vector is working and has the new security keys needed for OSKR
+development.
 
 ## Step 4: Installing the OSKR image
 
@@ -116,7 +243,9 @@ internals and begin your OSKR adventure! So lets grab it now.
 
 # Filesystem layout
 
-A brief overview follows.
+A brief overview follows of the filesystem as it exists at
+runtime. This does not discuss the various partitions and slots used
+to boot the robot.
 
 ## system partition
 
@@ -189,9 +318,9 @@ which one to use you probably want to start with **nano**.
 
 ## logcat
 
-## das
-
 ## webViz
+
+## das
 
 ## Offboard Vision Server
     http://192.168.1.111:8888/consolevarset?key=Offboard&value=1
@@ -201,7 +330,9 @@ which one to use you probably want to start with **nano**.
 # Security
 
 By default the system comes in a somewhat locked down state that
-prevents random access by most users to the internals.
+prevents random access by most users to the internals. This section
+describes several security features and settings, as well as ways to
+modify the settings to fit your needs.
 
 ## BLE
 
@@ -258,6 +389,8 @@ authorized_keys         id_rsa_Vector-U9D5.pub
 If you do this you should backup your local copy of the key. If it is
 lost you'll need to reset User Data to generate a new key and lose any
 work on the `/data` partition.
+
+### Changing authorized keys
 
 ## Unsecuring Development Tools
 
@@ -333,11 +466,11 @@ choice.
 
 3. Restart iptables to load the rules: `systemctl restart iptables`
 
+## Manifest signing keys
+
 # Example Customization Tasks
 
-## Basic
-
-### Disable Automatic updates
+## Disable Automatic updates
 
 If you're making changes to the system partition you'll want to
 disable automatic upgrades so you don't lose your work.
@@ -381,7 +514,7 @@ disable automatic upgrades so you don't lose your work.
 
     There are no longer entries from update-engine in the logs.
 
-### Change Boot Animation
+## Change Boot Animation
 
 It's easy to replace the boot animation with one you like
 better. You will need to convert an animated gif to raw format and
@@ -421,10 +554,9 @@ robot.
 
     `ssh root@192.168.1.110 "mount -o remount,rw /"`
 
-### Console vars via webVIz
+## Console vars via webVIz
 
 
 
 # Appendices
 
-## Appendix 1: Error Codes
