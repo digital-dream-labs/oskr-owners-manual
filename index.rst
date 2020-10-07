@@ -11,7 +11,8 @@ Welcome to OSKR Owner's Manual's documentation!
    :caption: Contents:
 
    doc/oskr_owners_manual
-
+   doc/error_codes
+   
 Indices and tables
 ==================
 
