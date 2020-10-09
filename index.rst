@@ -16,4 +16,5 @@ The OSKR Owner's Manual
 
    doc/oskr_owners_manual
    doc/error_codes
+   doc/vector_maintenance_tasks
    doc/glossary
