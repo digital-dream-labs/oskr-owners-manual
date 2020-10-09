@@ -7,8 +7,8 @@
    work. If not, see <http://creativecommons.org/licenses/by-nc/4.0/>.
    OSKR Owner's Manual documentation master file, created by
 
-Welcome to OSKR Owner's Manual's documentation!
-===============================================
+The OSKR Owner's Manual
+=======================
 
 .. toctree::
    :maxdepth: 2
