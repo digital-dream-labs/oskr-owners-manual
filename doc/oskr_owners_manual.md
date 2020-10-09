@@ -464,7 +464,7 @@ systems.
 
 On the first screen you will see several options referring to
 **Console Variables**. These are used to provide various flags to
-change behavior of Vector, gather information, and more. Th
+change behavior of Vector, gather information, and more.
 
 
 ## self test
@@ -739,8 +739,74 @@ robot.
 
     `ssh root@192.168.1.110 "mount -o remount,rw /"`
 
-## Console vars via webVIz
+## Watch Face recognition via console variables
 
+Here we'll use console variables to test out the face recogition of
+Vector.
+
+1. Open up the firewall to provide access to the `vic-engine`
+    webserver if you haven't already. To do this quickly `ssh -L
+    8888:localhost:8888 root@<ROBOT_IP>`
+
+2. Verify the page is up by going to <http://localhost:8888>
+
+3. Look at all available console variables:
+    <http://localhost:8888/consolevarlist>
+
+4. Here we're interested in `MirrorMode`
+
+5. Refer to the main page on the webserver for instructions on how to
+    set a console variable.
+
+    You can type this in directly to your web
+    browser but most professional developers would use a CLI tool like
+    `curl` or `wget`. On your computer, and **NOT** the Vector ssh
+    session:
+
+    ```
+    curl "http://localhost:8888/consolevarset?key=MirrorMode&value=1"
+	```
+
+	Note that in general software developers assume zero is the same
+    as **off** and a non-zero value is the same as **on**. Here we use
+    1 to turn the setting on and will later turn it off with 0.
+
+6. The screen of Vector should now show what it is seeing. Look at
+    Vector and you should see a box drawn around your head. The bottom
+    of the screen should show either `UNKNOWN` or your name if you've
+    previously identified yourself.
+
+7. Lets assume you haven't identified yourself. Say "Hey Vector... My
+    Name is XXXX" Vector will perform his scanning and hopefully
+    recognize you and say hi.
+
+    You will now see your name when he sees your face.
+
+8. Now that we've seen that in action lets change Vector back to his
+    normal self:
+
+    ```
+    curl "http://localhost:8888/consolevarset?key=MirrorMode&value=0"
+	```
+
+## Simulate a crash with a console function
+
+1. Open up the firewall to provide access to the `vic-engine`
+    webserver if you haven't already. To do this quickly `ssh -L
+    8888:localhost:8888 root@<ROBOT_IP>`
+
+2. Refer to the page <http://localhost:8888/consolefunclist> for a
+    list of available functions. In this case we'll use
+    `IntentionalAbort` to simulate a software crash and verify that
+    Vector will do a soft reboot.
+
+    You issue the command in directly from your web browser but most
+    professional developers would use a CLI tool like `curl` or `wget`. On
+    your computer, and **NOT** the Vector ssh session:
+
+    ```
+    curl "http://localhost:8888/consolefunccall?func=IntentionalAbort"
+	```
 
 
 # Appendices
