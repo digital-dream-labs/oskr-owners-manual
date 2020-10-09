@@ -1,7 +1,11 @@
-.. OSKR Owner's Manual documentation master file, created by
-   sphinx-quickstart on Wed Sep 30 10:37:50 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. OSKR Owner's Manual (c) 2020 by Digital Dream Labs
+
+   OSKR Owner's Manual is licensed under a Creative Commons
+   Attribution-NonCommercial 4.0 International License.
+
+   You should have received a copy of the license along with this
+   work. If not, see <http://creativecommons.org/licenses/by-nc/4.0/>.
+   OSKR Owner's Manual documentation master file, created by
 
 Welcome to OSKR Owner's Manual's documentation!
 ===============================================
