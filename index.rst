@@ -14,7 +14,13 @@ The OSKR Owner's Manual
    :maxdepth: 2
    :caption: Contents:
 
-   doc/oskr_owners_manual
+   doc/intro
+   doc/unlock
+   doc/tools
+   doc/filesystem
+   doc/vector_subsystems
+   doc/security
+   doc/examples
    doc/error_codes
    doc/vector_maintenance_tasks
    doc/glossary
