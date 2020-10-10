@@ -106,7 +106,7 @@ that are as or more sever than the chosen log level.  For example
 `logcat *:W` will filter out *Debug* and *Info* level messages.
 
 
-* ""D""ebug
+* **D**ebug
 * **I**information
 * **W**arning
 * **E**rror
