@@ -1,5 +1,64 @@
 # Tools
 
+## Vector Self Test
+
+Unlocking Vector adds a developer self test option to the admin menu
+that can be used to check all the various hardware. To access it:
+
+1. Put Vector in its charging station.
+
+2. Press his backpack button twice.
+
+3. Move the forklift up and down to get to the admin menu.
+
+4. Remove Vector from the charger, rotate his tank treads until the
+    **>** arrow points to `RUN SELF TEST`.
+
+5. Move the forklift up and down to select.
+
+6. Move the tank treads to select `CONFIRM` and move the forklift up
+   and down to begin.
+
+Follow the instructions on screen as Vector performs the self test.
+
+## SSH / Shell Access
+
+ssh is so integral to development that you might not think of it as a
+tool. But it acts as the gateway that allows access to all of Vector's
+internals. Without ssh you could not:
+
+* Initiate console access to run commands.
+* Modify files locally on Vector.
+* Copy new files, features and enhancements, to Vector.
+
+After obtaining the ssh key as detailed in the **Unlocking Your
+Robot** chapter you'll need to:
+
+1. Load the key on your system if its not loaded. You will normally
+    need to do this once after powering on your computer:
+    `ssh-add ~/.ssh/id_rsa_Vector-X1Y1`
+
+2. Obtain Vector's Internet Address from the Admin Screen. This will
+   normally stay the same as long as you're on the same network but
+   may change. If you suddenly can't connect re-check it.
+
+   * Put vector in its charging station.
+   * Press the backpack button twice to get to the Pairing screen.
+   * Raise the forklift up and down to get to the Admin screen.
+   * Get the address listed after IP.
+
+    Throughout this document we will use `<ROBOT_IP>` as a placeholder
+    for this address. Wherever you see that replace it with this address.
+
+3. ssh in to Vector: `ssh root@<ROBOT_IP>`
+
+At this point you will be logged in to a Unix Shell. Once again the
+shell is so integral to development many developer don't think of it
+as a tool. But if you've never used it before there are many
+eccentricities you need to learn to be able to use the shell
+successfully. It will make your life much easier if you go through a
+tutorial online to get up to speed on basic usage.
+
 ## Text editors
 
 To edit configuration files, change settings, etc, you'll find
@@ -105,12 +164,34 @@ There is **a lot** of things you can see here and you're encouraged to
 poke around. For now we'll provide a brief overview of the two main
 systems.
 
-### Console variable access
+### Console variables and functions
 
 On the first screen you will see several options referring to
 **Console Variables**. These are used to provide various flags to
 change behavior of Vector, gather information, and more.
 
 
-## self test
+### WebViz
 
+WebViz provides insight in to the way Vector is operating at a high
+level in real time. Among other things it will show you:
+
+* **NavMap** Vector's understanding of the enviroment around him,
+   where table edges are located, walls, charger, obstacles.
+
+* **CloudIntents** How Vector turns what you say into an action on its
+   part.
+
+* **Mood** Is Vector Happy? Confident? Social?
+  Stimulated? Trusting?
+
+* **Behavior** What is Vector doing now and why?
+
+There is a link for WebViz at the bottom of the main webserver
+page. It can also be accessed directly at
+<http://localhost:8888/webViz.html>. Explore around and see what you
+can learn.
+
+#### WebViz Navigation. Vector knows it's in a Vector Space
+
+![](./img/navmap.png)
