@@ -85,16 +85,16 @@ Example accessing the Anim process webViz server:
 1. ssh in to the device with Port Forwarding options:
 
     ```
-    grant@lord-humungus otas % ssh -L9889:localhost:8889 root@192.168.1.110
+    grant@lord-humungus otas % ssh -L8889:localhost:8889 root@192.168.1.110
     root@Vector-U9D5:~# 
     ```
-2. Visit <http://localhost:9889> on your computer.
+2. Visit <http://localhost:8889> on your computer.
 
 Multiple ports can be forwarded. Here we forward two webViz
 connections:
 
 ```
-ssh  -L9888:localhost:8888 -L9889:localhost:8889  root@<ROBOT_IP>
+ssh  -L8888:localhost:8888 -L8889:localhost:8889  root@<ROBOT_IP>
 ```
 
 ### Permanent access via iptables
