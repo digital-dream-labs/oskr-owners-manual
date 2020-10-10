@@ -1,4 +1,4 @@
-# Resources
+# Appendix 4: Resources
 
 * [Beginner's Guide to the Bash
    Terminal](https://www.youtube.com/watch?v=oxuRxtrO2Ag) - A good

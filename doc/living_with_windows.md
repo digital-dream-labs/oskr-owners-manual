@@ -1,4 +1,4 @@
-# Appendix: Living with Windows
+# Appendix 3: Living with Windows
 
 Vector runs on a variant of the Android Operating System which in turn
 is based on Linux. Because of this the entire toolchain assumes that
