@@ -61,7 +61,17 @@ If you do this you should backup your local copy of the key. If it is
 lost you'll need to reset User Data to generate a new key and lose any
 work on the `/data` partition.
 
-### Changing authorized keys
+### Removing the Digital Dream Labs dev key
+
+Digital Dream Labs includes a static ssh key to make internal
+development and testing easier. Although we respect users' privacy and
+would never connect to a customer robot there is always the
+possibility that the key gets out in the wild where another party can
+use it.
+
+To remove the key connect to Vector and open the file
+`/data/ssh/authorized_keys` in a text editor. Delete the line that
+starts with `ssh-rsa` and ends with `digital_dream_labs_dev_key`.
 
 ## Unsecuring Development Tools
 
@@ -139,3 +149,24 @@ choice.
 
 ## Manifest signing keys
 
+By default Vector has security checks that will only allow an .ota
+file that is signed by Digital Dream Labs to be installed. As people
+in the community make their own modifications they can make their own
+.otas. To be able to install a community-created ota you will need to
+whitelist the creator's signing key. To do so:
+
+1. On your host computer ensure the appropriate directory is created:
+   `sudo root@<ROBOT_IP> mkdir /data/etc/ota_keys`
+
+2. Obtain and verify the public signing key from the creator of the
+    OTA.
+
+3. Copy the key to vector: `scp new_key.pub
+    root@<ROBOT_IP>:/data/etc/ota_keys`
+
+You will now be able to install OTAs signed with this key manually.
+
+> **WARNING** An OTA file modifies the entire operating system and has
+> full control of Vector, and can perform very destructive actions
+> either intentionally or unintentionally. Only install OTAs from
+> sources you trust.
