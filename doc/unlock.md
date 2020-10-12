@@ -315,15 +315,22 @@ development.
 
 We're out of danger now.
 
-## Step 4: Installing the OSKR image
+## Step 4: Installing the latest OSKR image
 
 Next we need to install an up-to-date software image to bring back all
 the expected functionality. This is a **safe** update again. If there
 are problems the Vector will continue to run. No need to be paranoid
 on this update.
 
-Get the file <https://exapmple.org> and apply it to Vector the same
-way you applied the test upgrade.
+Get the file
+<https://ota.global.anki-services.com/vic/oskr/full/latest.ota> and
+apply it to Vector the same way you applied the test upgrade.
+
+## Sign in to Vector
+
+You may use either the normal phone app or
+<https://vector-setup.ddl.io>  to add your account to the
+newly imaged vector.
 
 ## Step 5: Getting your ssh key
 
