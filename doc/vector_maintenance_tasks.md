@@ -1,6 +1,6 @@
 # Appendix 2: Vector Maintenance Tasks
 
-This covers serveral tasks used to maintain all Vectors that are not
+This covers several tasks used to maintain all Vectors that are not
 specific to OSKR.
 
 ## Factory Reset

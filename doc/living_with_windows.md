@@ -48,7 +48,7 @@ distribution to install.
 ### VirtualBox - Virtual Linux
 
 [VirtualBox](https://www.virtualbox.org/) is a free program that
-allows you to run entire operating systems within your exsting
+allows you to run entire operating systems within your existing
 operating system. If you want a full version of Linux with its own
 desktop and tools you will want to install VirtualBox and install
 **Ubuntu 20.04 LTS** . Refer to the [VirtualBox User

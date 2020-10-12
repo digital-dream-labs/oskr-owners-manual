@@ -158,7 +158,7 @@ If you have trouble extracting the archive you can send the entire
 It is **strongly recommended** that you do a test upgrade with a safe
 upgrade file before unlocking your robot. If the process is confusing
 the first time it's recommended you do a test upgrade again and again
-until you feel compfortable with the process.
+until you feel comfortable with the process.
 
 Remember that modifying the ABOOT and recovery filesystems are
 dangerous operations. If the process is interrupted somehow while
@@ -211,7 +211,7 @@ since there will be no access to anything else at that point in time.
    about python here so you may substitute with a webserver you're
    more familiar with
 
-    Assuming you saved the file in a Dowloads folder:
+    Assuming you saved the file in a Downloads folder:
 
     ```
     cd ~/Downloads # or other directory
@@ -240,7 +240,7 @@ since there will be no access to anything else at that point in time.
     ![](./img/directory-listing.png)
 
 5. Click on the `latest.ota` file and verify that the link works and
-   your broswer asks you to download the file.
+   your browser asks you to download the file.
 
 ### Connecting to the advanced console interface in vector web setup
 

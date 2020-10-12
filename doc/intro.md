@@ -11,7 +11,7 @@ to choose between:
     provide limited exposure and APIs to program at the most superficial
     level.
 
-* Homebrew projects running on hobbyist level hardware with simple
+* Home-brew projects running on hobbyist level hardware with simple
     programs of a few hundred lines of code to create interesting but
     simplistic behaviors.
 
@@ -44,7 +44,9 @@ Attribution-NonCommercial 4.0 International License.
 You should have received a copy of the license along with this
 work. If not, see <http://creativecommons.org/licenses/by-nc/4.0/>.
 
-## Distribution
+## Distribution Notes
+
+This version of was written for OSKR software version 1.7.1.
 
 The latest official version of this document can be found on the web
 at <https://oskr.ddl.io/oom/>. A pdf version is also available at
