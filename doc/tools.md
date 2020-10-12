@@ -170,6 +170,15 @@ On the first screen you will see several options referring to
 **Console Variables**. These are used to provide various flags to
 change behavior of Vector, gather information, and more.
 
+There are many many options here. Most of the options are known
+internally in the codebase as **Dev Cheats** and are not available 
+on production versions of Vector software.
+
+To get the full list of variables visit
+<http://localhost:8888/consolevarlist>. To get the full list of
+functions visit <http://localhost:8888/consolefunclist>. Examples of
+changing a console variable value and executing a console function can
+be found in the Examples section of this manual.
 
 ### WebViz
 
