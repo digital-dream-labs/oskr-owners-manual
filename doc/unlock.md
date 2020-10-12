@@ -323,7 +323,7 @@ are problems the Vector will continue to run. No need to be paranoid
 on this update.
 
 Get the file
-<https://ota.global.anki-services.com/vic/oskr/full/latest.ota> and
+<http://ota.global.anki-services.com/vic/oskr/full/latest.ota> and
 apply it to Vector the same way you applied the test upgrade.
 
 ## Sign in to Vector
