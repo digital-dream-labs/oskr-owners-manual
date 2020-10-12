@@ -155,10 +155,15 @@ If you have trouble extracting the archive you can send the entire
 
 ## Step 2: Doing a Test Upgrade
 
+It is **strongly recommended** that you do a test upgrade with a safe
+upgrade file before unlocking your robot. If the process is confusing
+the first time it's recommended you do a test upgrade again and again
+until you feel compfortable with the process.
+
 Remember that modifying the ABOOT and recovery filesystems are
-dangerous operations. If the process is interrupted somehow it will
-make it impossible to boot Vector. Some potential points of failure in
-a normal OTA upgrade are:
+dangerous operations. If the process is interrupted somehow while
+system files are installing it will make it impossible to boot
+Vector. Some potential points of failure in a normal OTA upgrade are:
 
 * Vector loses power in the middle of the upgrade.
 
@@ -169,18 +174,22 @@ a normal OTA upgrade are:
 * Some random part of the internet has issues preventing the OTA from
   downloading completely.
 
-This doesn't matter for normal OTA installs because we can just try
-again. But when unlocking an interruption like this can be
-disastrous. To avoid the recommended procedure is to turn your Vector
-in to an AP and connect directly with your computer. Now there are
-only two devices that have potential for failure instead of
-dozens.
+This doesn't matter for normal OTA installs because the process is
+designed to be safe and we can always fall back to the recovery
+software. But when unlocking we are **REWRITING** the recovery
+software. An interruption like this can be
+disastrous.
 
-The process to do this is somewhat cumbersome so it's best to do one
-or more test runs until you're comfortable with the process and know
-what to expect. we will do a normal OTA update with the same files
-that are normally used to update your Vector. These do not interact
-with the dangerous parts and if there are problems you can try again.
+To minimize chances of network problems interfering with the update
+process the recommended procedure is serve your unlock image from your
+computer to Vector locally. This eliminates any possibility of Wide
+Area Network issues affecting the outcome.
+
+The process is not particularly complex if you follow the steps as
+written but it can be confusing the first time you do it, particularly
+if you don't have much experience with networking. Luckily you can
+practice by uploading a normal system upgrade manually. This is *safe*
+and can be repeated safely.
 
 ### Prepping the robot
 
@@ -190,15 +199,19 @@ can be found in Appendix 2.
 
 ### Hosting the OTA locally
 
-We need to host the OTA locally on the computer we're using to update
+We need to host the OTA locally on your computer we're using to update
 since there will be no access to anything else at that point in time.
 
 1. Download a local copy of the latest production firmware from
 <http://ota.global.anki-services.com/vic/prod/full/latest.ota>.
 
-2. Create a simple webserver to serve up the files. OSX and Linux
-   systems should have python installed by default. Assuming you saved
-   the file in a Dowloads folder:
+2. Create a simple webserver to serve up the files. Here we use
+   python because it is installed on many systems and has a
+   lightweight webserver built in. However there is nothing special
+   about python here so you may substitute with a webserver you're
+   more familiar with
+
+    Assuming you saved the file in a Dowloads folder:
 
     ```
     cd ~/Downloads # or other directory
@@ -212,19 +225,31 @@ since there will be no access to anything else at that point in time.
 	python -m SimpleHTTPServer
     ```
 
-3. Open a web browser and go to <http://localhost:8000>. You should
-    see a listing of files including the latest.ota file.
+3. Determine the LAN ip of your computer. This is different from the
+   external address and will generally start with 192.168, or 10. If
+   you don't know how to find the address
+   [this LifeHacker article](https://lifehacker.com/how-to-find-your-local-and-external-ip-address-5833108)
+   might help.
 
-4. Click on the `latest.ota` file and verify that the link works.
+4. Open the Chrome Browser and verify that you can get to the file. If
+   your IP address is 192.168.1.130, the link is
+   <http://192.168.1.130:8000/>
+
+    You should see a basic index page listing files including latest.ota.
+
+    ![](./img/directory-listing.png)
+
+5. Click on the `latest.ota` file and verify that the link works and
+   your broswer asks you to download the file.
 
 ### Connecting to the advanced console interface in vector web setup
 
 We will use the simulated terminal interface in Vector Web Setup to access
-advanced options.
+advanced options that aren't available in the normal interface.
 
-1. Using the Chrome web browser go to <https://vector-setup.ddl.io>
+1. Open a new tab in Chrome and go to <https://vector-setup.ddl.io>
 
-2. Place Vector in his charging station and press the backpack button
+2. Place Vector in its charging station and press the backpack button
     twice to enter pairing mode.
 
 3. Click "Pair with Vector" and select Vector from the popup.
@@ -233,50 +258,28 @@ advanced options.
    for **Enable auto-setup flow**. Enter the pin and click **Enter Pin**.
 
 5. You will now be in an emulated terminal session in chrome. Type
-`help` to verify it's working.
+    `help` to verify it's working.
 
-![](./img/vws-advanced-setup.png)
+    Keep this console open throughout the process.
 
-Keep this console open throughout the process.
-
-### Enabling AP mode and connecting
-
-To eliminate as many dependencies as possible we'll turn the Vector in
-to an AP and connect directly to it. This will mean that your computer
-will talk directly to Vector and will eliminate any problems with your
-home internet router and beyond. It also means you will lose internet
-access while connected to Vector.
-
-1. From the console opened above issue the command `wifi-ap
-    true`. This will display new credentials for the new wifi connection
-
-    ```
-    [v5] P7Z4$
-    wifi-ap true
-             ssid: Vector P7Z4
-       password: 20809135
-    ```
-
-2. Connect your computer to this access point with this password.
-
-
+    ![](./img/vws-advanced-setup.png)
 
 
 ### Starting the deploy
 
 This is the critical step. We want to do this correctly.
 
-1. Open a new tab or browser window and open <http://192.168.0.2:8000>
-    Since Vector will be requesting the file **DO NOT** use links with
-    `localhost` in them or it won't be able to find the files.
+1. Go back to your tab with the file directory listing.  Since Vector
+will be requesting the file **DO NOT** use links with `localhost` in
+them or it won't be able to find the files.
 
-2. Copy the link for `latest.ota` to your clipboard.
+2. Copy the full link for `latest.ota` to your clipboard.
 
 3. Return to the Chrome window with the Terminal session and run
     `ota-start <PASTED LINK FROM ABOVE>`
 
 If all goes well you should see a status bar update, the file should
-upload, Vector will upload, and you'll have the new version of the
+upload, Vector will reboot, and you'll have the new version of the
 firmware.
 
 If it doesn't go well you may get an error status code in the
@@ -367,3 +370,44 @@ To get the QSN:
 
 ## Congratulations! Vector is unlocked!
 
+## Advanced Network Configuration: Enabling AP mode
+
+If you have a particularly bad router or wifi connection it's best to
+find a better connection to kick off the upgrade. However it is
+possible to eliminate your router as a dependency and talk directly to
+Vector by turning it in to an Access Point. The downside to this is
+that you will lose all normal internet access and only be able to
+talk to Vector until the process is complete.
+
+This usually provides a better more reliable connection but some
+computers' network cards may have more trouble than not connecting to
+Vector's 2.4 Ghz network. Once again it is **strongly recommended**
+that you test an AP style deploy with the safe upgrade image as listed
+in Step 2 above.
+
+Follow the process until bring up the simulated command terminal. From
+there:
+
+
+1. Issue the command `wifi-ap true`. This will display new credentials
+    for the new wifi connection.
+
+    ```
+    [v5] P7Z4$
+    wifi-ap true
+             ssid: Vector P7Z4
+       password: 20809135
+    ```
+
+2. Connect your computer to this access point with this password.
+
+3. Test that you can access the file index at
+   <http://192.168.0.2:8000> which will be your new Local IP while
+   connected to Vector.
+
+4. Resume the existing process while still on the access point.
+
+If all goes well Vector will install and reboot, and your computer
+will automatically go back to its normal network.
+
+![](./img/ap-update.png)
