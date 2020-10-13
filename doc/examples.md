@@ -82,7 +82,7 @@ robot.
 
 4. Reboot Vector from the host system:
 
-    `ssh root@192.168.1.110 "mount -o remount,rw /"`
+    `ssh root@192.168.1.110 "/sbin/reboot"`
 
 ## Watch Face recognition via console variables
 
