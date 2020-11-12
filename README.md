@@ -11,9 +11,10 @@ Most people will want to view the documents directly online at:
 This repository is only of use if you wish to modify the document,
 create additional content, etc.
 
-Docs can be viewed online by clicking on the [developer
-directory](./developer), viewed on your local machine, or
-built out in to pretty html or pdf documents.
+Docs can be viewed online by clicking on the [doc
+directory](./doc), viewed on your local machine, or
+built out in to pretty html or pdf documents.  These built out files
+will be placed within a [_build] directory.
 
 To install:
 
@@ -25,6 +26,10 @@ To build locally:
 
     source ./bin/activate # if virtualenv hasn't been activated yet
     make html
+
+or, to make a single large html file:
+
+    make singlehtml
 
 To genreate PDFs on OSX:
 
