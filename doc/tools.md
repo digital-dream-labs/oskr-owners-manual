@@ -59,6 +59,17 @@ eccentricities you need to learn to be able to use the shell
 successfully. It will make your life much easier if you go through a
 tutorial online to get up to speed on basic usage.
 
+## Compilers
+
+ARM compiiler
+
+For 
+https://anki-vic-pubfiles.anki.com/license/prod/1.0.0/licences/OStarball.v160.tgz
+
+The
+https://anki-vic-pubfiles.anki.com/license/prod/1.0.0/licences/engineTarball.v160.tgz
+
+
 ## Text editors
 
 To edit configuration files, change settings, etc, you'll find
