@@ -28,9 +28,17 @@ trade-offs and provide you with direct access to:
 * Packaging tools to distribute your custom versions of the software
     to other robotics enthusiasts.
 
+Please note that there will be some small changes due to contractual or legal requirements.
+Review these changes **before** proceeding:
+
+* It will not be possible to go back to a production robot. The unlock process is permanent.
+
+* Amazon Alexa mode is disabled. Due to contractual requirements we are unable to include Alexa
+ on Vectors where users can modify the system without review by Amazon.
+
 We are excited as you are for this opportunity. We look forward to
 seeing all the ways people will transform Vector and find completely
-new uses the we couldn't even conceive or imagine. We feel no matter
+new uses that we couldn't even conceive or imagine. We feel no matter
 how high we set our expectations someone out there will find ways to
 surprise the world.
 

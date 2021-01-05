@@ -6,5 +6,6 @@
    unix experience.
 
 * [Vector-TRM](https://github.com/GooeyChickenman/victor/blob/master/documentation/Vector-TRM.pdf)
-   A document with extensive reverse-engineering of Vector. 
+   A document with extensive reverse-engineering of Vector that describes how
+   Vector works,  what his parts and files are.
 

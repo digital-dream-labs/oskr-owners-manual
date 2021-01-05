@@ -1,120 +1,4 @@
-# Unlocking your Robot
-
-The first step in your new adventure is unlocking your robot and
-transforming it from a normal Vector to and OSKR enabled Vector where
-you will be able to directly access all internals.
-
-## What is Unlocking? Why do we do it?
-
-By default the operating system of Vector is secure and unchangeable
-with digital signatures to ensure system integrity. The security starts
-with encryption keys baked in to the hardware itself and works its way
-down to the final operating system image. In each phase of the boot
-process the previous system verifies the next system loads. If even
-one bit, byte, letter, etc change in any of the phases then the system
-will stop loading and come to a halt. This is done for:
-
-* **Security** We want to make sure a malicious user hasn't modified
-    the code to do something that it shouldn't be doing, like sending spam
-    emails. Even if a hacker or bot network is somehow able to access
-    the Vector they won't be able to make any changes to turn it in to
-    the wrong kind of bot.
-
-* **Reliability** We don't want mistakes to break the device. There
-    are currently hundreds of thousands of Vectors out there, and we're
-    hoping for millions and billions. At that level even small
-    problems can add up quickly. Ensuring the Operating System hasn't
-    been changed ensures reliability.
-
-At boot time the following verification happens.
-
-1. The hardware chip itself verifies the cryptographic signature on
-    the low level ABOOT partition. It is for all practical purposes
-    impossible to override this check.
-
-2. The ABOOT partition has another security key baked in that it uses
-    to verify the BOOT partition and load it. The BOOT partition is a
-    skeleton linux operating system to bootstrap the main system.
-
-3. The BOOT partition loads the appropriate SYSTEM partition which is
-    the final software to run.
-
-    In the case of a normal Vector the
-    SYSTEM partition is protected by an Android-specific system called
-	`dm-verity` to ensure that this partition isn't modified.
-
-    Development Vectors used internally by the company, and now OSKR
-    Vectors do not enforce `dm-verity` security on the system
-    partition allowing development of new features.
-
-In addition to these layers of cryptographic security a new Vector
-comes with a **recovery filesystem** installed for reliability
-purposes. This has been loaded on at the factory and is the boot
-system of last resort when no other software will load.
-
-We then set aside two slots for day-to-day software usage called **A**
-and **B**. When you install an OTA update the system:
-
-1. Downloads the update.
-
-2. Performs some basic verification to see if the image 'fits' with
-    the current configuration.
-
-3. Decides if the A or B slot is the available one.
-
-4. Copies the new filesystems on to the slot.
-
-5. Flags the new slot as the 'good' one.
-
-6. Reboots and loads the software. If the software fails to load it
-    marks the slot as invalid.
-
-    If there is a previously valid slot, such as **A** after an update
-    to **B** was installed, it reverts to that.
-
-    If there is now good **A** or **B** slot it reverts back to the
-    **recovery filesystem** so you can try to install again. This is
-    important. No matter how bad the running system gets messed up we
-    should **always** be able to fall back to the **recovery filesystem**
-	
-So what does all this mean? We've got two conflicting goals:
-
-1. Normal Vectors should have all the security and reliability that
-    are expected for a consumer electronic device and need to remain
-    locked down.
-
-2. OSKR Vectors should have some ability to lock down the software
-    installed but some ability to modify software for development.
-
-Because of this each type of robot need to enforce different
-requirements each needs a different set of cryptographic signatures so
-that a normal Vector behaves the way it should and a OSKR unit behaves
-the way it should.
-
-To accomplish this and unlock a OSKR robot we need to:
-
-1. Reprogram the ABOOT image with a new cryptographic signature.
-
-2. Sign the new BOOT images with this signature.
-
-3. Create new **recovery filesystems** signed by the new keys because
-    the old ones will be considered 'bad' when we swap out the signatures.
-
-This is where things get tricky. The normal assumption is that the
-ABOOT and recovery filesystems get installed directly at the factory
-and physically written directly to the chips before final assembly of
-the robot, and never touched again.
-
-But to do this outside of the factory we need to do this with our OTA
-(Over The Air) update scripts. And we need to modify software
-partitions that were never expected to be written in an environment
-much less reliable than a factory with physical connections to the
-hardware. So we must be very careful to make sure that we generate
-correct images, and the installation process completes without
-interruption.
-
-But enough of the theory let's dive in to the process...
-
+# Detailed Unlock Steps
 ## Step 1: Getting your QSN
 
 The first step in unlocking your Vector is delivering the QSN to Digital Dream
@@ -191,12 +75,6 @@ if you don't have much experience with networking. Luckily you can
 practice by uploading a normal system upgrade manually. This is *safe*
 and can be repeated safely.
 
-### Prepping the robot
-
-Reset your Vector completely. First wipe the user data from Vector
-then perform a factory reset. Instructions for both of these tasks
-can be found in Appendix 2.
-
 ### Hosting the OTA locally
 
 We need to host the OTA locally on your computer we're using to update
@@ -242,6 +120,59 @@ since there will be no access to anything else at that point in time.
 5. Click on the `latest.ota` file and verify that the link works and
    your browser asks you to download the file.
 
+
+### Prepping the robot
+
+First, fully charge your Vector.  Keep him on the charging dock.  Next
+wipe the user data from Vector and enter into Recovery Mode.
+
+#### Erasing User Data
+
+First wipe the user data from Vector.  This will erase the entire contents of
+the `/data` partition. It will also give the Vector a new identity and name later.
+
+To do so:
+
+1. Place Vector on its charging station.
+
+2. Press his backpack button twice. The normal BLE Pairing screen
+    should appear on its screen.
+
+3. Lift Vector's forklift up and down. A administration menu should
+    appear on its screen.
+
+4. Remove Vector from its charging station and spin one of the tank
+    treads. This will move the **>** arrow pointing at an option.
+
+5. Select **CLEAR USER DATA**. Lift the forklift up and down to
+    proceed. A confirmation screen should appear.
+
+6. Spin the tank treads to select **CONFIRM**. Lift the forklift up
+    and down. Vector should reboot and start at the initial setup screen.
+
+7. You will now need to re-attach Vector to your account via the Phone
+    App or other means and re-download the newly generated ssh key if
+    you wish to ssh in to Vector.
+
+#### Recovery Mode (akak Factory Reset)
+
+Next perform  Recovery Mode reboot (Factory Reset) of your Vector. 
+This will cause Vector to reboot and run using the the initial factory recovery
+filesystem.
+
+To do so:
+
+1. Place Vector on its charging station.
+
+2. Hold its backpack button down until it powers down completely and
+    keep holding down.
+
+3. After approximately 5 seconds the round green light at the front of
+    the backpack will light up. Release the button at this time.
+
+4. Vector will reboot and start at the initial setup screen just like new.
+
+
 ### Connecting to the advanced console interface in vector web setup
 
 We will use the simulated terminal interface in Vector Web Setup to access
@@ -264,6 +195,8 @@ advanced options that aren't available in the normal interface.
 
     ![](./img/vws-advanced-setup.png)
 
+6. In the emulated terminal session, `wifi-scan` to check that Vector can see your wifi
+7. Have Vector connect to your wifi with `wifi-connect ` followed by your Wifi SSID and password
 
 ### Starting the deploy
 
@@ -292,6 +225,8 @@ window. Some of the more common status codes are:
 
 ## Step 3: Installing the unlock image
 
+This is the critical step. We want to do this correctly.
+
 Now we follow the same procedure with the custom generated image for
 your Vector. If you skipped ahead to here *please* go through the test
 run with a safe file. Assuming you know what you're doing:
@@ -303,10 +238,13 @@ run with a safe file. Assuming you know what you're doing:
     Don't worry, it does this safely and you will not damage your
     Vector if you forget to do so.
 
-2.  Use the link to the custom image provided by Digital Dream Labs
+2. Put a book or heavy block in front of Vector to keep him from driving
+   off the charging station while updating.
+
+3.  Use the link to the custom image provided by Digital Dream Labs
     instead of the normal OTA file. Note that each custom image only
     works on ONE Vector. If you have multiple Vectors each will need
-    its own image.
+    its own image.  Vector's face probably won't show an
 
 After installation is complete Vector should reboot and you should now
 see an introductory screen that says OSKR. This means that your
@@ -325,12 +263,13 @@ on this update.
 Get the file
 <http://ota.global.anki-services.com/vic/oskr/full/latest.ota> and
 apply it to Vector the same way you applied the test upgrade.
+**Please Note: This is NOT the same "latest.ota" you downloaded earlier! Please download this new file and either rename it or store it elsewhere to differentiate the OSKR image from the production image you downloaded earlier.**
 
 ## Sign in to Vector
 
 You may use either the normal phone app or
 <https://vector-setup.ddl.io>  to add your account to the
-newly imaged vector.
+newly imaged Vector.
 
 ## Step 5: Getting your ssh key
 
@@ -360,6 +299,13 @@ To get the QSN:
     chmod 700 ~/.ssh/id_rsa_Victor-X1Y1
 	```
 
+    For Windows 10 users:
+    ```bash
+    Set-Service -Name ssh-agent -StartupType Manual
+    Start-Service ssh-agent
+    ssh-add id_rsa_Vector-whatever
+    ssh root@192.168.whatever```
+    
 6. Load the key in to your keyring: `ssh-add
     ~/.ssh/id_rsa_Victor-X1Y1`
 

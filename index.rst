@@ -15,7 +15,10 @@ The OSKR Owner's Manual
    :caption: Contents:
 
    doc/intro
+   doc/overview
+   doc/unlock_checklist
    doc/unlock
+   .. include:: doc/ssh_setup
    doc/tools
    doc/filesystem
    doc/vector_subsystems
