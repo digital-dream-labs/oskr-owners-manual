@@ -196,7 +196,7 @@ advanced options that aren't available in the normal interface.
     ![](./img/vws-advanced-setup.png)
 
 6. In the emulated terminal session, `wifi-scan` to check that Vector can see your wifi
-7. Have Vector connect to your wifi with `wifi-connect ` followed by your Wifi SSID and passord
+7. Have Vector connect to your wifi with `wifi-connect ` followed by your Wifi SSID and password
 
 ### Starting the deploy
 
@@ -265,6 +265,7 @@ on this update.
 Get the file
 <http://ota.global.anki-services.com/vic/oskr/full/latest.ota> and
 apply it to Vector the same way you applied the test upgrade.
+**Please Note: This is NOT the same "latest.ota" you downloaded earlier! Please download this new file and either rename it or store it elsewhere to differentiate the OSKR image from the production image you downloaded earlier.**
 
 ## Sign in to Vector
 

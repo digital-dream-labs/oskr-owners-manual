@@ -5,8 +5,8 @@ specific to OSKR.
 
 ## Factory Reset
 
-Since you are modify the contents of Vector there will be times where
-you break the operating system and need to reset Vector and return the
+Since you are modifying the contents of Vector there will be times where
+you break the operating system and need to reset Vector and return to
 the initial factory recovery filesystem.
 
 To do so:
@@ -63,8 +63,6 @@ To do so:
 
 The CCIS screen shows additional information about how Vector is
 operating. To access it:
-
-To do so:
 
 1. Place Vector on its charging station.
 
