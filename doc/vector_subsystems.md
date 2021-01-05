@@ -1,7 +1,7 @@
 # Vector subsystems
 
 The Vector software consists of several interacting subsystems. The
-internal codename for the project was *Victor** and we will see that
+internal codename for the project was **Victor** and we will see that
 reflected in the naming with things like `vic-`.
 
 As the software is open sourced there will be more detailed

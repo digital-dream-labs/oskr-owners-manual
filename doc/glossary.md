@@ -8,3 +8,6 @@ DAS
 
 OTA
 : Over-the-Air update. Software update over WiFi.
+
+CLI
+: Command Line Interface. Text-based command system used in the event that a Graphical User Interface is not available or not desirable.
