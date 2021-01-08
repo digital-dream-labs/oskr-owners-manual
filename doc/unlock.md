@@ -244,7 +244,9 @@ run with a safe file. Assuming you know what you're doing:
 3.  Use the link to the custom image provided by Digital Dream Labs
     instead of the normal OTA file. Note that each custom image only
     works on ONE Vector. If you have multiple Vectors each will need
-    its own image.  Vector's face probably won't show an
+    its own image.  Vector's face probably won't show any indication
+    that an update is in process -- he will show his eyes rather than
+    a cloud with a spinner.
 
 After installation is complete Vector should reboot and you should now
 see an introductory screen that says OSKR. This means that your
