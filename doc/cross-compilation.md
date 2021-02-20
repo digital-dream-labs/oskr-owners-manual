@@ -14,7 +14,7 @@ machine download the [x86_64 (recommended)](https://releases.linaro.org/componen
 )
 or [i686](https://releases.linaro.org/components/toolchain/binaries/6.3-2017.05/arm-linux-gnueabi/gcc-linaro-6.3.1-2017.05-i686_arm-linux-gnueabi.tar.xz) release.
 
-If you will be using a Windows machine, download the [i686-mingw](https://releases.linaro.org/components/toolchain/binaries/6.3-2017.05/arm-linux-gnueabi/gcc-linaro-6.3.1-2017.05-i686_arm-linux-gnueabi.tar.xz)
+If you will be using a Windows machine, download the [i686-mingw](https://releases.linaro.org/components/toolchain/binaries/6.3-2017.05/arm-linux-gnueabi/gcc-linaro-6.3.1-2017.05-i686-mingw32_arm-linux-gnueabi.tar.xz)
 release.  This toolchain is tested and works on Windows, though the commands
 below will need tweaking unless run under WSL.
 
