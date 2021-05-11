@@ -90,8 +90,8 @@ JDOCS houses all of Vector's "memory"- his lifetime statistics and more are stor
 1. Make Vector's partition writable:  
 `mount -o remount rw /`  
 
-2. Move to the 'jdocs' folder in the /data partition:
-`cd /data/data/com.anki.victor/persistent/jdocs`
+2. Move to the 'jdocs' folder in the /data partition:  
+`cd /data/data/com.anki.victor/persistent/jdocs`  
 
 3. Zip up the files in this directory- you can change the name of the .tar to whatever you want, this is just an example:  
 `tar -cvf VectorsBrain.tar *`  
