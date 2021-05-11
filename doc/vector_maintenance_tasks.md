@@ -80,3 +80,22 @@ operating. To access it:
 
 7. You will eventually return to the original admin screen. Left the
     forklift arm up and down to exit.
+
+## Backing Up JDOCS  
+
+**NOTE: This operation is done at your own risk. Modifying JDOCS file values in a robot can break things, and the only way to un-break them is a Clear User Data reset.**  
+
+JDOCS houses all of Vector's "memory"- his lifetime statistics and more are stored in JavaScript files on the robot in `/data/data/com.anki.victor/persistent/jdocs/`. To back these items up via ssh:  
+
+1. Make Vector's partition writable:  
+`mount -o remount rw /`  
+
+2. Move to the 'jdocs' folder in the /data partition:
+`cd /data/data/com.anki.victor/persistent/jdocs`
+
+3. Zip up the files in this directory- you can change the name of the .tar to whatever you want, this is just an example:  
+`tar -cvf VectorsBrain.tar *`  
+
+4. Open a new Command Prompt / Terminal window **from your own machine** and transfer the file from Vector to your own computer.  
+Syntax: `scp -i <Vector SSH Key> root@<Vector IP Address>:/data/data/com.anki.victor/persistent/jdocs/<tar name> <destination on your local computer>`  
+Example: `scp -i C:\Users\robbie\.ssh\id_rsa_Vector-K9W7 root@192.168.50.117:/data/data/com.anki.victor/persistent/jdocs/VectorsBrain.tar C:\Users\robbie\Desktop`  
