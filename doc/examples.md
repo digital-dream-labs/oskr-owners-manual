@@ -83,6 +83,55 @@ robot.
 4. Reboot Vector from the host system:
 
     `ssh root@192.168.1.110 "mount -o remount,rw /"`
+   
+## Edit Sayings
+
+With this task, we can edit what Vector says in different situations- for example, we can change how he describes each weather condition, how he responds to different situations in BlackJack games, or even when he does (or doesn't) recognize a human face! Let's take a look at how to do this.
+
+You will need:
+* SSH Access to Vector
+
+Once you've logged in via SSH as root, we'll need to make sure we can change files. Remount the partition as rewritable:  
+`mount -o remount rw /`
+
+Now that we can change files, it's time to see what options we have to change for the localized strings. Move into the directory where the localized strings are contained:  
+`cd /anki/data/assets/cozmo_resources/assets/LocalizedStrings/en-US`
+
+Once there, you'll see 2 files we can edit:  
+* BehaviorStrings.json  
+* BlackJackStrings.json  
+
+I recommend making backups of each file. Use these commands:  
+`cp BehaviorStrings.json BehaviorStrings.json.bak`  
+`cp BlackJackStrings.json BlackJackStrings.json.bak`  
+(If you ever have to restore a file, use `cp` the other way around. Example: `cp BehaviorStrings.json.bak BehaviorStrings.json`)
+
+Of the 2 files available here, let's open a file for editing using `nano`. Example:  
+`nano BehaviorStrings.json`  
+
+Once the file is open, you will be able to see text entries that define the speech that should happen when certain weather patterns, recognition phases, or other items play. Here is an example:
+```
+"BehaviorDisplayWeather.Sunny": {
+    "translation": "{0} degrees and sunny"
+  },
+```  
+
+Let's say we want to change this to something a bit more personal. Feel free to make your own saying:
+```  
+"BehaviorDisplayWeather.Sunny": {
+    "translation": "{0} degrees and great for a motorcycle ride"
+  },
+```  
+
+Be sure to change the other sayings for each weather type to match the same "theme" - or mix and match! You can also make edits to any other phrases you wish here, but be sure not to destroy any of the quotation marks around the phrases. Once you are finished making changes, we need to save the file with the following steps:  
+1. Exit the editor: `Ctrl+X`  
+2. Confirm the changes: `y`
+3. Press `Enter` to confirm that you want to keep the same filename.  
+
+Reboot the robot:  
+`sudo reboot`
+
+Now you can test your new phrases!
 
 ## Watch Face recognition via console variables
 
