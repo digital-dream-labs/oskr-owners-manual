@@ -114,14 +114,14 @@ Once there, you'll see 2 files we can edit:
 "BehaviorDisplayWeather.Sunny": {
     "translation": "{0} degrees and sunny"
   },
-```  
+```
 
 6. Let's say we want to change this to something a bit more personal. Feel free to make your own saying:
 ```  
 "BehaviorDisplayWeather.Sunny": {
     "translation": "{0} degrees and great for a motorcycle ride"
   },
-```  
+```
 
 7. Be sure to change the other sayings for each weather type to match the same "theme" - or mix and match! You can also make edits to any other phrases you wish here, but be sure not to destroy any of the quotation marks around the phrases. Once you are finished making changes, we need to save the file with the following steps:  
 1. Exit the editor: `Ctrl+X`  
@@ -163,12 +163,12 @@ to:
 ```
   "OVERFIT_ORANGE" :  
    { "Hue" : 0.97, "Saturation" : 0.97 },
-```  
+```
 
-7. Now that we've modified the values to new settings, let's save the changes:
+7. Now that we've modified the values to new settings, let's save the changes:  
 	a. Exit the editor: `Ctrl+X`  
-	b. Confirm the changes: `y`
-	c. Press `Enter` to confirm that you want to keep the same filename.
+	b. Confirm the changes: `y`  
+	c. Press `Enter` to confirm that you want to keep the same filename.  
 
 8. Reboot the robot:  
 `sudo reboot`  
