@@ -24,6 +24,7 @@ The OSKR Owner's Manual
    doc/vector_subsystems
    doc/security
    doc/examples
+   doc/open_source_repositories
    doc/error_codes
    doc/vector_maintenance_tasks
    doc/living_with_windows

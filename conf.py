@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = "OSKR Owner's Manual"
-copyright = '2020, Digital Dream Labs'
+copyright = '2020-2021, Digital Dream Labs'
 author = 'Digital Dream Labs'
 
 
