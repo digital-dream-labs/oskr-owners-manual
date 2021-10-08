@@ -105,6 +105,9 @@ Deploy the latest OSKR software:
           double-tapping his back button. The software version will appear after "OS:"
 - [ ] 53. Using the mobile App, sign into Vector and add your account to him
 
+- Alternate Installation: [Using a Secure Shell](https://oskr.ddl.io/oom/doc/unlock_checklist.html#getting-secure-shell), issue the following command to kick off the update-engine script and pull the newest OTA: `UPDATE_ENGINE_DEBUG=true UPDATE_ENGINE_URL=http://ota.global.anki-services.com/vic/oskr/full/latest.ota /anki/bin/update-engine`  
+- Vector will reboot into the new firmware.
+
 ### Getting Secure Shell
 
 - [ ] 54. Use <https://vector-setup.ddl.io> in a Chrome browser to connect to and pair with your Vector
