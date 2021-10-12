@@ -19,7 +19,7 @@ While you wait for your unlock OTA, you can set up your computer and prepare Vec
 First, set up a HTTP server to deliver OTA files to your robot:
 
 - [ ] 8. Install python on your computer, if you haven't already
-- [ ] 9. Download the last production software from <http://ota.global.anki-services.com/vic/prod/full/latest.ota>
+- [ ] 9. Download the last production software from <https://ota.global.anki-services.com/vic/prod/full/latest.ota>
 - [ ] 10. Start a simple webserver with the latest.ota
 - [ ] 11. Find the IP address for your computer
 - [ ] 12. Check that you can connect to this local webserver with Chrome.
@@ -90,7 +90,7 @@ Deploy the unlock OTA software:
 - [ ] 44. Check that Vector successfully applied the unlock software
 
 ### Deploy 3: Deploying the latest OSKR Software OTA image
-- [ ] 45. If installing using a Python server, download the last production software from <http://ota.global.anki-services.com/vic/oskr/full/latest.ota>  
+- [ ] 45. If installing using a Python server, download the last production software from <https://ota.global.anki-services.com/vic/oskr/full/latest.ota>  
 into your local server folder - otherwise skip to Step 46.
 
 Prepare installation of the latest unlocked OSKR OTA:
@@ -100,14 +100,14 @@ Prepare installation of the latest unlocked OSKR OTA:
 - [ ] 49. Press Alt+2 or Alt+3 to open the emulated console. Verify that the emulated console is working by typing `help`.
 
 Deploy the latest OSKR software:
-- [ ] 50. Copy the full link for OSKR `.ota` file: <http://ota.global.anki-services.com/vic/oskr/full/latest.ota>
-- [ ] 51. Type `ota-start ` followed by this link. The full command should be: `ota-start <http://ota.global.anki-services.com/vic/oskr/full/latest.ota>`
+- [ ] 50. Copy the full link for OSKR `.ota` file: <https://ota.global.anki-services.com/vic/oskr/full/latest.ota>
+- [ ] 51. Type `ota-start ` followed by this link. The full command should be: `ota-start <https://ota.global.anki-services.com/vic/oskr/full/latest.ota>`
 - [ ] 52. Vector will apply the latest update OTA and then restart. Check that Vector successfully applied the OSKR software by  
 double-tapping his back button. The software version will appear after "OS:"
 - [ ] 53. Using the mobile App, sign into Vector and add your account to him
 
 - Alternate Installation: [Using a Secure Shell](https://oskr.ddl.io/oom/doc/unlock_checklist.html#getting-secure-shell), issue the following command to kick off the update-engine script  
-and pull the newest OTA: `UPDATE_ENGINE_DEBUG=true UPDATE_ENGINE_URL=http://ota.global.anki-services.com/vic/oskr/full/latest.ota /anki/bin/update-engine`  
+and pull the newest OTA: `UPDATE_ENGINE_DEBUG=true UPDATE_ENGINE_URL=https://ota.global.anki-services.com/vic/oskr/full/latest.ota /anki/bin/update-engine`  
 - Vector will reboot into the new firmware.
 
 ### Getting Secure Shell
