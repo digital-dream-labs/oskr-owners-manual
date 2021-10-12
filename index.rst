@@ -28,5 +28,6 @@ The OSKR Owner's Manual
    doc/error_codes
    doc/vector_maintenance_tasks
    doc/living_with_windows
+   doc/cross-compilation
    doc/resources
    doc/glossary
