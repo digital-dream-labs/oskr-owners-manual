@@ -8,7 +8,7 @@ systems run Ubuntu 16.04. Because of this all the documentation
 assumes that you are on a Unix system. This can cause problems for
 people using Windows-based computers. Here are some tips to help out.
 
-## PuTTY - A good ssh shell for Windows
+## PuTTY - A good SSH shell for Windows
 
 If you're only interested in connecting to Vector and working from
 there you can use
@@ -17,12 +17,13 @@ to easily connect to Vector and then work from there. It is widely
 used and there is plenty of documentation available on the web.
 
 One complication is that PuTTY uses a different key format than the
-one provided by Vector when you download its ssh key. To convert the
-key you downloaded to the format used by PuTTY:
+one provided by Vector when you download its SSH key. To convert the
+SSH key in the robot logs you downloaded to the format used by PuTTY:
 
-1. open `PuTTYgen`.
+1. Install PuTTY from the link above. Open `PuTTYgen`.
 
-2. Click **Conversions -> Import** and select the file
+2. Click **Conversions -> Import** and select id_rsa file from the Vector
+   logs inside the `/data/ssh` folder
    `id_rsa_Victor-X1Y1`
 
 3. Go to **File -> Save private key** to save the PuTTY version of the
@@ -30,12 +31,12 @@ key you downloaded to the format used by PuTTY:
 
 ## Full Linux Environment
 
-As we release the OSKR source code you will need a full linux
+As we release the OSKR source code you will need a full Linux
 environment to compile the code. There are a few options here.
 
 ### WSL - Windows Subsystem for Linux
 
-If you simply want a console window and can work from that WSL is
+If you simply want a command line interface and can work from that WSL is
 a tool provided by Microsoft that allows you to run Ubuntu
 natively. This is the best way to run things if you want to use your
 normal Windows environment as much as possible.

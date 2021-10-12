@@ -5,7 +5,7 @@ Generator](https://www.sphinx-doc.org/en/master/index.html).
 
 Most people will want to view the documents directly online at:
 
-* HTML
+* [HTML](https://oskr.ddl.io/)
 * PDF
 
 This repository is only of use if you wish to modify the document,
@@ -31,7 +31,7 @@ or, to make a single large html file:
 
     make singlehtml
 
-To genreate PDFs on OSX:
+To generate PDFs on OSX:
 
     brew cask install mactex-no-gui # one time install
     make latexpdf

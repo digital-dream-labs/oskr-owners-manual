@@ -16,8 +16,8 @@ To do so:
 2. Hold its backpack button down until it powers down completely and
     keep holding down.
 
-3. After approximately 5 seconds the round green light at the front of
-    the backpack will light up. Release the button at this time.
+3. After approximately 15 seconds, the white light at the back of the backpack  
+will begin to glow. Release the button.
 
 4. Vector will reboot and start at the initial setup screen just like new.
 
@@ -56,8 +56,8 @@ To do so:
     and down. Vector should reboot and start at the initial setup screen.
 
 7. You will now need to re-attach Vector to your account via the Phone
-    App or other means and re-download the newly generated ssh key if
-    you wish to ssh in to Vector.
+    App or other means and re-download the newly generated SSH key if
+    you wish to SSH in to Vector.
 
 ## CCIS Screen
 
@@ -85,7 +85,7 @@ operating. To access it:
 
 **NOTE: This operation is done at your own risk. Modifying JDOCS file values in a robot can break things, and the only way to un-break them is a Clear User Data reset.**  
 
-JDOCS houses all of Vector's "memory"- his lifetime statistics and more are stored in JavaScript files on the robot in `/data/data/com.anki.victor/persistent/jdocs/`. To back these items up via ssh:  
+JDOCS houses all of Vector's "memory"- his lifetime statistics and more are stored in JavaScript files on the robot in `/data/data/com.anki.victor/persistent/jdocs/`. To back these items up via SSH:  
 
 1. Make Vector's partition writable:  
 `mount -o remount rw /`  

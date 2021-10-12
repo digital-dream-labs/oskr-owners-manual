@@ -31,11 +31,11 @@ to the computer and the *public key* is safe to distribute to anyone
 without compromising the private key's security.
 
 The default configuration is generally secure although you may wish to
-take some steps to harden the ssh connection even more.
+take some steps to harden the SSH connection even more.
 
-### Adding a passphrase to your local ssh key
+### Adding a passphrase to your local SSH key
 
-By default the generated ssh key doesn't have a passphrase and anyone
+By default the generated SSH key doesn't have a passphrase and anyone
 with access to the file can use it. To add a passphrase:
 
 ```
@@ -63,7 +63,7 @@ work on the `/data` partition.
 
 ### Removing the Digital Dream Labs dev key
 
-Digital Dream Labs includes a static ssh key to make internal
+Digital Dream Labs includes a static SSH key to make internal
 development and testing easier. Although we respect users' privacy and
 would never connect to a customer robot there is always the
 possibility that the key gets out in the wild where another party can
@@ -83,16 +83,16 @@ is ideal.
 
 ### Temporary access via SSH Port Forwarding
 
-ssh provides options to do *Port Forwarding* to create tunnels that go
+SSH provides options to do *Port Forwarding* to create tunnels that go
 from your computer, over the secure connection, to the system you're
 logging in to. This can be used to get temporary access to a developer
 tool. Although not as convenient as permanently changing firewall
-rules, when you disconnect the ssh connection security is
+rules, when you disconnect the SSH connection security is
 automatically restored.
 
 Example accessing the Anim process webViz server:
 
-1. ssh in to the device with Port Forwarding options:
+1. SSH in to the device with Port Forwarding options:
 
     ```
     grant@lord-humungus otas % ssh -L8889:localhost:8889 root@192.168.1.110

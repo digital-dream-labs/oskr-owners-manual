@@ -12,7 +12,7 @@ To get the QSN:
 
 2. Follow the instructions to pair with Vector and log in.
 
-3. Click the **Download logs** link located at the top right corner of
+3. Click the **Download Logs** link located at the top right corner of
     the page.
 
 4. Open the downloaded archive which should extract the contents of
@@ -55,8 +55,8 @@ Vector. Some potential points of failure in a normal OTA upgrade are:
 
 * Your service providers connection dies in the middle of the OTA file download.
 
-* Some random part of the internet has issues preventing the OTA from
-  downloading completely.
+* Some random part of the internet has issues preventing the OTA from  
+downloading completely.
 
 This doesn't matter for normal OTA installs because the process is
 designed to be safe and we can always fall back to the recovery
@@ -103,14 +103,13 @@ since there will be no access to anything else at that point in time.
 	python -m SimpleHTTPServer
     ```
 
-3. Determine the LAN ip of your computer. This is different from the
-   external address and will generally start with 192.168, or 10. If
+3. Determine the LAN IP of your computer. This is different from the
+   external address and will generally start with 192.168, or 10.0. If  
    you don't know how to find the address
-   [this LifeHacker article](https://lifehacker.com/how-to-find-your-local-and-external-ip-address-5833108)
-   might help.
+   [this LifeHacker article](https://lifehacker.com/how-to-find-your-local-and-external-ip-address-5833108) might help.
 
 4. Open the Chrome Browser and verify that you can get to the file. If
-   your IP address is 192.168.1.130, the link is
+   your computer's IP address is 192.168.1.130, the link is
    <http://192.168.1.130:8000/>
 
     You should see a basic index page listing files including latest.ota.
@@ -123,12 +122,12 @@ since there will be no access to anything else at that point in time.
 
 ### Prepping the robot
 
-First, fully charge your Vector.  Keep him on the charging dock.  Next
+First, fully charge your Vector. Keep him on the charging dock. Next
 wipe the user data from Vector and enter into Recovery Mode.
 
 #### Erasing User Data
 
-First wipe the user data from Vector.  This will erase the entire contents of
+First wipe the user data from Vector. This will erase the entire contents of
 the `/data` partition. It will also give the Vector a new identity and name later.
 
 To do so:
@@ -151,24 +150,22 @@ To do so:
     and down. Vector should reboot and start at the initial setup screen.
 
 7. You will now need to re-attach Vector to your account via the Phone
-    App or other means and re-download the newly generated ssh key if
-    you wish to ssh in to Vector.
+    App or other means and re-download the newly generated SSH key if
+    you wish to SSH in to Vector.
 
-#### Recovery Mode (akak Factory Reset)
+#### Recovery Mode (aka Factory Reset)
 
-Next perform  Recovery Mode reboot (Factory Reset) of your Vector. 
-This will cause Vector to reboot and run using the the initial factory recovery
+Next perform Recovery Mode reboot (Factory Reset) of your Vector. 
+This will cause Vector to reboot and run using the the initial factory recovery  
 filesystem.
 
 To do so:
 
 1. Place Vector on its charging station.
 
-2. Hold its backpack button down until it powers down completely and
-    keep holding down.
-
-3. After approximately 5 seconds the round green light at the front of
-    the backpack will light up. Release the button at this time.
+2. Hold its backpack button down until it powers down completely and  
+keep holding down until the white light at the back of the backpack  
+comes on.
 
 4. Vector will reboot and start at the initial setup screen just like new.
 
@@ -180,29 +177,30 @@ advanced options that aren't available in the normal interface.
 
 1. Open a new tab in Chrome and go to <https://vector-setup.ddl.io>
 
-2. Place Vector in its charging station and press the backpack button
-    twice to enter pairing mode.
+2. Place Vector in its charging station and press the backpack button  
+twice to enter pairing mode.
 
 3. Click "Pair with Vector" and select Vector from the popup.
 
-4. You're now on the screen to enter the pairing code. Uncheck the box
-   for **Enable auto-setup flow**. Enter the pin and click **Enter Pin**.
+4. You're now on the screen to enter the pairing code. Uncheck the box  
+for **Enable auto-setup flow**. Enter the pin and click **Enter PIN**.
 
-5. You will now be in an emulated terminal session in chrome. Type
-    `help` to verify it's working.
+5. You will now be in an emulated terminal session in chrome. Type  
+`help` to verify it's working.  
 
-    Keep this console open throughout the process.
+Keep this console open throughout the process.  
 
-    ![](./img/vws-advanced-setup.png)
+![](./img/vws-advanced-setup.png)
 
 6. In the emulated terminal session, `wifi-scan` to check that Vector can see your wifi
+
 7. Have Vector connect to your wifi with `wifi-connect ` followed by your Wifi SSID and password
 
 ### Starting the deploy
 
 This is the critical step. We want to do this correctly.
 
-1. Go back to your tab with the file directory listing.  Since Vector
+1. Go back to your tab with the file directory listing. Since Vector
 will be requesting the file **DO NOT** use links with `localhost` in
 them or it won't be able to find the files.
 
@@ -273,7 +271,7 @@ You may use either the normal phone app or
 <https://vector-setup.ddl.io>  to add your account to the
 newly imaged Vector.
 
-## Step 5: Getting your ssh key
+## Step 5: Getting your SSH key
 
 Now that Vector is up and running and back to his normal self you'll
 want to get the newly created SSH key. Although this isn't strictly
@@ -286,18 +284,18 @@ To get the QSN:
 
 2. Follow the instructions to pair with Vector and log in.
 
-3. Click the **Download logs** link located at the top right corner of
+3. Click the **Download Logs** link located at the top right corner of
     the page.
 
 4. Open the downloaded archive which should extract the contents of
     several logs on to your hard drive.
 
-5.  The file `data/diagnostics/ssh/id_rsa` is your security key. It
-    should be installed so it can be used by your system. On Linux and
-    OSX:
+5.  The file `data/ssh/id_rsa` is your security key. It  
+should be installed so it can be used by your system. On Linux and  
+OSX:
 
     ```bash
-    cp data/diagnostics/ssh/id_rsa_Victor-X1Y1 ~/.ssh
+    cp data/ssh/id_rsa_Victor-X1Y1 ~/.ssh
     chmod 700 ~/.ssh/id_rsa_Victor-X1Y1
 	```
 
@@ -321,7 +319,7 @@ To get the QSN:
 
 8. Connect! `ssh root@<ROBOT_IP_FROM_ABOVE>`
 
-9. Type the command `exit` to leave the ssh session.
+9. Type the command `exit` to leave the SSH session.
 
 ## Congratulations! Vector is unlocked!
 

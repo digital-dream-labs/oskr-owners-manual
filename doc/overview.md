@@ -113,5 +113,5 @@ hardware. So we must be very careful to make sure that we generate
 correct images, and the installation process completes without
 interruption.
 
-But enough of the theory let's dive in to the process...
+Enough of the theory- let's dive in to the process!
 

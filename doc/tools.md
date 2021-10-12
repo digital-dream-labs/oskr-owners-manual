@@ -23,15 +23,15 @@ Follow the instructions on screen as Vector performs the self test.
 
 ## SSH / Shell Access
 
-ssh is so integral to development that you might not think of it as a
+SSH is so integral to development that you might not think of it as a
 tool. But it acts as the gateway that allows access to all of Vector's
-internals. Without ssh you could not:
+internals. Without SSH you could not:
 
 * Initiate console access to run commands.
 * Modify files locally on Vector.
 * Copy new files, features and enhancements, to Vector.
 
-After obtaining the ssh key as detailed in the **Unlocking Your
+After obtaining the SSH key as detailed in the **Unlocking Your
 Robot** chapter you'll need to:
 
 1. Load the key on your system if its not loaded. You will normally
@@ -50,7 +50,7 @@ Robot** chapter you'll need to:
     Throughout this document we will use `<ROBOT_IP>` as a placeholder
     for this address. Wherever you see that replace it with this address.
 
-3. ssh in to Vector: `ssh root@<ROBOT_IP>`
+3. SSH in to Vector: `ssh root@<ROBOT_IP>`
 
 At this point you will be logged in to a Unix Shell. Once again the
 shell is so integral to development many developer don't think of it
@@ -86,7 +86,7 @@ which one to use you probably want to start with **nano**.
     basics of vi as it will be installed on systems with no other editors.
 	
 * **mg** - A low footprint editor that mimics the basic keystrokes and
-    opeations of the popular text editor emacs.
+    operations of the popular text editor emacs.
 	
 * **emacs** - Is not installed but aliased to the mg program for
     people who keep typing `emacs` out of muscle memory.
@@ -116,6 +116,9 @@ debugging hierarchy. You can choose a log level and only see errors
 that are as or more sever than the chosen log level.  For example
 `logcat *:W` will filter out *Debug* and *Info* level messages.
 
+You also have the opportunity to use LNAV, a log viewing program, with
+Vector's logs using custom filters that will allow you to more effectively
+debug Vector. Check that out [here](https://github.com/digital-dream-labs/lnav-configuration).
 
 * **D**ebug
 * **I**information
@@ -171,7 +174,7 @@ to access the webserver embedded in `vic-engine`. You should see this:
 
 ![](./img/engine-web-server.png)
 
-There is **a lot** of things you can see here and you're encouraged to
+There are **a lot** of things you can see here and you're encouraged to
 poke around. For now we'll provide a brief overview of the two main
 systems.
 

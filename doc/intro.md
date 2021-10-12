@@ -54,7 +54,7 @@ work. If not, see <http://creativecommons.org/licenses/by-nc/4.0/>.
 
 ## Distribution Notes
 
-This version of was written for OSKR software version 1.7.1.
+This version of was written for OSKR software version 1.8.
 
 The latest official version of this document can be found on the web
 at <https://oskr.ddl.io/oom/>. A pdf version is also available at
