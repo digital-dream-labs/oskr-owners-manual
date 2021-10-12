@@ -170,7 +170,7 @@ comes on.
 4. Vector will reboot and start at the initial setup screen just like new.
 
 
-### Connecting to the advanced console interface in vector web setup
+### Connecting to the advanced console interface in Vector Web Setup
 
 We will use the simulated terminal interface in Vector Web Setup to access
 advanced options that aren't available in the normal interface.

@@ -166,7 +166,7 @@ whitelist the creator's signing key. To do so:
 
 You will now be able to install OTAs signed with this key manually.
 
-> **WARNING** An OTA file modifies the entire operating system and has
+> **WARNING**: An OTA file modifies the entire operating system and has
 > full control of Vector, and can perform very destructive actions
 > either intentionally or unintentionally. Only install OTAs from
 > sources you trust.

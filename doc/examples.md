@@ -12,7 +12,8 @@ disable automatic upgrades so you don't lose your work.
 	root@Vector-U9D5:~# logcat update-engine:* *:S
 	--------- beginning of main
 	10-07 05:13:09.568  2214  2214 I update-engine: @robot.ota_download_start000025820
-	10-07 05:13:10.637  2249  2249 I update-engine: @robot.ota_download_endfail1.7.1.68oskrFailed to open URL: HTTP Error 403: Forbidden20300026887
+	10-07 05:13:10.637  2249  2249 I update-engine: @robot.ota_download_endfail1.7.1.68oskr
+	Failed to open URL: HTTP Error 403: Forbidden20300026887
     ```
 
 2. Examine the contents of the update file located at
@@ -77,8 +78,7 @@ robot.
 
 3. Use `scp` to copy the file in to place:
 
-    `scp bootscreen.gif.raw
-    root@192.168.1.110:/anki/data/assets/cozmo_resources/config/engine/animations/boot_anim.raw`
+   `scp bootscreen.gif.raw root@192.168.1.110:/anki/data/assets/cozmo_resources/config/engine/animations/boot_anim.raw`
 
 4. Reboot Vector from the host system:
 

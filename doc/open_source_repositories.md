@@ -8,6 +8,11 @@ Vector has 2 main software development kits, based upon Python and Go. These SDK
 [Go SDK](https://github.com/digital-dream-labs/vector-go-sdk)  
 [Python SDK](https://github.com/anki/vector-python-sdk)
 
+## Core Software
+These repositories contain source code that is vital to the subsystems and engines that control animation, emotion, and more.  
+
+[Vector](https://github.com/digital-dream-labs/vector)
+
 ## Animations
 The Animations repositories provide tools for developers and users to create new animations and/or adjust or customize Vector's eyes and other graphics!
 
@@ -38,6 +43,7 @@ These tools are great for developers to make quick, convenient changes to robot 
 [Vector Bluetooth](https://github.com/digital-dream-labs/vector-bluetooth)  
 [Hugh](https://github.com/digital-dream-labs/hugh)  
 [Opus Go](https://github.com/digital-dream-labs/opus-go)
+[LNAV Configuration](https://github.com/digital-dream-labs/lnav-configuration)
 
 ## Documentation
 Much of the documentation is held in each GitHub repository! However, we do have other guides and docs on how to use the tools herein. These docs are a work in progress.
