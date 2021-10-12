@@ -1,3 +1,5 @@
+# A brief script to convert GIF files to RAW with Vector's screen dimensions. Use GIF files that are 184x96 for best results.
+# Expected Python Version is 3.9.
 
 import os,sys
 #import struct
