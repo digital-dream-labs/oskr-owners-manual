@@ -85,7 +85,7 @@ off the charging station while updating.
 
 
 Deploy the unlock OTA software:
-- [ ] 42. Copy the full link for unlock `.ota` file with the QSN serial number (Example: `0060378a.ota`)
+- [ ] 42. Copy the full link for unlock `.ota` file with the ESN serial number (Example: `0060378a.ota`)
 - [ ] 43. Type `ota-start ` followed by this link
 - [ ] 44. Check that Vector successfully applied the unlock software
 
