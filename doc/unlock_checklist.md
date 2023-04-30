@@ -19,7 +19,7 @@ While you wait for your unlock OTA, you can set up your computer and prepare Vec
 First, set up a HTTP server to deliver OTA files to your robot:
 
 - [ ] 8. Install python on your computer, if you haven't already
-- [ ] 9. Download the last production software from <https://ota.global.anki-services.com/vic/prod/full/latest.ota>
+- [ ] 9. Download the last production software from <http://ota.global.anki-services.com/vic/prod/full/latest.ota>
 - [ ] 10. Start a simple webserver with the latest.ota
 - [ ] 11. Find the IP address for your computer
 - [ ] 12. Check that you can connect to this local webserver with Chrome.
@@ -90,7 +90,7 @@ Deploy the unlock OTA software:
 - [ ] 44. Check that Vector successfully applied the unlock software
 
 ### Deploy 3: Deploying the latest OSKR Software OTA image
-- [ ] 45. If installing using a Python server, download the last production software from <https://ota.global.anki-services.com/vic/oskr/full/latest.ota>  
+- [ ] 45. If installing using a Python server, download the last production software from <http://ota.global.anki-services.com/vic/oskr/full/latest.ota>  
 into your local server folder - otherwise skip to Step 46.
 
 Prepare installation of the latest unlocked OSKR OTA:
